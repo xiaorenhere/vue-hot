@@ -1,11 +1,12 @@
 li {
     list-style: none;
 }
+
 .small {
     position: relative;
     /* 让 .small 成为定位上下文 */
     width: 22vw;
-    height: 504px;
+    height: 409px;
     background-color: white;
     margin: 0 8px;
     margin-top: 20px;
@@ -20,16 +21,25 @@ li {
     .small {
         width: 29vw;
     }
+    .el-card{
+        width: 29vw !important;
+    }
 }
 
 @media screen and (max-width:1050px) {
     .small {
         width: 43vw;
     }
+    .el-card{
+        width: 43vw;
+    }
 }
 
 @media screen and (max-width:700px) {
     .small {
+        width: 90vw;
+    }
+    .el-card{
         width: 90vw;
     }
 }
@@ -209,6 +219,9 @@ li {
 }
 
 .title {
+    position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     font-weight: bolder;
     height: 55px;
@@ -225,6 +238,49 @@ li {
     width: 25px;
     top: 5px;
     vertical-align: middle;
+}
+.title p:nth-child(2){
+    font-weight: bolder;
+}
+.fixed-header-card {
+  position: relative; /* 使得卡片的内容可以被正确地定位 */
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  z-index: 1; /* 如果需要显示在其他内容之上，可以设置一个较高的 z-index 值 */
+}
+.icon{
+    position: absolute;
+    right: 10px;
+    width: 68px;
+    height: 24px;
+    font-size: 12px;
+    background-color: #17c96433;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid #17c96433;
+}
+.icon img{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%,-50%);
+    
+    object-fit: cover; /* 保持图片比例，填充容器 */
+}
+.icon p{
+    position: absolute;
+    color: green;
+    top: 50%;
+    /* left: 70%; */
+    right: 0;
+    transform: translate(-10%,-50%);
 }
 
 .button {
@@ -253,27 +309,39 @@ nav {
     /* height: 100%; */
     background-color: rgb(240, 242, 245);
     flex-grow: 1;
+    /* padding: 0px 10px; */
+    padding-top: 64px;
 }
 
 .big {
     margin: 0px 3vw;
     display: flex;
+    /* align-items: center; */
+    /* justify-content: left; */
     flex-wrap: wrap;
 }
+@media screen and (max-width:375px) {
 
+    .big {
+        display: flex;
+        // flex-wrap: nowrap;
+    }
+}
 .footer {
+    display: flex;
+    align-items: center;
     color: rgba(0, 0, 0, 0.58);
     font-size: 12px;
-    padding-bottom: 20px;
     height: 40px;
     background-color: rgb(240, 242, 245);
-    padding: 20px;
+    /* padding: 10px; */
 }
 
 .footer a {
     margin-right: 20px;
     font-size: 12px;
     color: rgba(0, 0, 0, 0.58);
+    text-decoration: none;
 }
 
 .beian {
@@ -290,4 +358,99 @@ nav {
     height: 16px;
     vertical-align: middle;
     margin-right: 5px;
+}
+.card {
+    overflow: hidden;
+    // margin-top: 60px;
+    // height: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .el-card {
+        border-radius: 10px;
+        max-height: 409px;
+        width: 22vw;
+        background-color: white;
+        margin: 0 8px;
+        margin-top: 20px;
+        border-radius: 5px;
+
+        // 卡片头部
+        .el-card__header {
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+
+            .logo {
+                span {
+                    margin-left: 10px;
+                    font-weight: bold;
+                }
+            }
+
+            .icon {
+                line-height: 22px;
+                border-radius: 30px;
+                width: 64px;
+                height: 21px;
+                background-color: #d1f4e0;
+                font-size: 12px;
+
+                .el-icon {
+                    transform: scale(1.2);
+                    border-radius: 50%;
+                    position: relative;
+                    top: 1px;
+                    left: 4px;
+                    background-color: #12a150;
+                }
+
+                span {
+                    color: #4fa5ac;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        // 卡片内容区域
+        .el-card__body {
+            margin: 0;
+            padding: 0 !important;
+            height: 300px;
+            overflow: auto;
+
+            .text {
+                line-height: 32px;
+                height: 28px;
+                padding: 8px 10px;
+                border-bottom: 1px solid #dcdcdc;
+            }
+        }
+
+        // 卡片底部
+        .el-card__footer {
+            text-align: center;
+            height: 20px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                font-size: 12px;
+                color: #8c8c8c;
+                line-height: 16px;
+                width: 50%;
+                padding-right: 20px;
+                border-right: 2px solid #8c8c8c;
+            }
+
+            .el-button {
+                position: relative;
+                right: 10%;
+                bottom: 10px;
+                border: none;
+            }
+        }
+    }
 }
