@@ -87,49 +87,75 @@ document.addEventListener('scroll', function () {
   if (progress < 33) {
     circle.style.stroke = 'red';
   } else if (progress < 66) {
-    circle.style.stroke = 'Purple';
+    circle.style.stroke = 'skyblue';
   } else {
-    circle.style.stroke = 'black';
+    circle.style.stroke = 'lightgreen';
   }
 });
+
+let isLight = true
+
+const changeBgColor = () => {
+  isLight = !isLight
+  // if (isLight.value) {
+  //   const header = document.querySelector('.hot-top')
+  //   header.classList.add('write')
+  // }
+  // const header = document.querySelector('.hot-top')
+  // header.classList.add('black')
+}
+
+const loading = ref(true)
+setTimeout(() => {
+  // 异步操作完成后关闭 loading
+  loading.value = false;
+}, 1000);
 </script>
 <template>
-  <div class="hot-top">
-    <header>
-      <div class="logo1">
-        <div id="pic"><img src="./assets//images/热门.png" alt="" /></div>
-        <div class="title1">
-          <p>今日热榜</p>
-          <p>汇聚全网热点，热门尽览无余</p>
-        </div>
+  <div v-loading="loading">
+    <div class="hot-top">
+      <header>
+        <div class="logo1">
+          <div id="pic"><img src="./assets//images/热门.png" alt="" /></div>
+          <div class="title1">
+            <p>今日热榜</p>
+            <p>汇聚全网热点，热门尽览无余</p>
+          </div>
 
-      </div>
-      <div class="times">
-        <div class="time1">{{ currentDate }}
-          &nbsp;{{ currentTime }}
         </div>
-        <div class="time2">{{ formatChineseDateTime }}</div>
-      </div>
-      <div class="hot-right">
-        <div class="hot-right-one">1</div>
-        <div class="hot-right-two">
-          <a href="https://gitee.com/liushuohere/vue-hot">
-            <img src="./assets/images/GITEE.svg" alt="">
-          </a>
+        <div class="times">
+          <div class="time1">{{ currentDate }}
+            &nbsp;{{ currentTime }}
+          </div>
+          <div class="time2">{{ formatChineseDateTime }}</div>
         </div>
-        <div class="hot-right-three">
-          <div class="progress-container">
-            <svg class="progress-ring" width="30" height="30">
-              <circle class="progress-ring__circle" stroke="white" stroke-width="3" fill="transparent" r="12" cx="15"
-                cy="15" />
-            </svg>
-            <div class="progress-percentage">0</div>
+        <div class="hot-right">
+          <div class="hot-right-one">
+            <button @click="changeBgColor">
+              <img v-if="isLight" src="./assets/images/太阳.svg" alt="">
+              <img v-else src="./assets/images/moon-月亮.svg" alt="">
+            </button>
+          </div>
+          <div class="hot-right-two">
+            <a href="https://gitee.com/liushuohere/vue-hot">
+              <img src="./assets/images/GITEE.svg" alt="">
+            </a>
+          </div>
+          <div class="hot-right-three">
+            <div class="progress-container">
+              <svg class="progress-ring" width="30" height="30">
+                <circle class="progress-ring__circle" stroke="white" stroke-width="3" fill="transparent" r="12" cx="15"
+                  cy="15" />
+              </svg>
+              <div class="progress-percentage">0</div>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
+    <RouterView />
   </div>
-  <RouterView />
+
 </template>
 <style scoped lang="scss">
 @import url('./assets/css/app.scss');

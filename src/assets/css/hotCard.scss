@@ -58,7 +58,8 @@ li {
 
       .icon {
         position: relative;
-        right: 10px;
+        top: -5px;
+        right: 4px;
         width: 68px;
         height: 24px;
         font-size: 12px;
@@ -87,238 +88,252 @@ li {
           transform: translate(-10%, -50%);
         }
       }
-
     }
 
     // 卡片内容区域
     .el-card__body {
       margin: 0;
       // padding: 0 !important;
-      padding-left: 10px;
+      padding: 5px 0px 5px 10px;
       height: 300px;
       overflow: auto;
       .scroll-list .rank {
-          cursor: pointer;
-          padding: 4px 8px;
-          text-align: center;
-          color: rgba(0, 0, 0, 0.8);
-          border-radius: 5px;
-          line-height: 16px;
-          background-color: rgba(0, 0, 0, 0.04);
-          flex: 0 0 auto;
+        cursor: pointer;
+        padding: 4px 8px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
+        line-height: 16px;
+        background-color: rgba(0, 0, 0, 0.04);
+        flex: 0 0 auto;
       }
-      .scroll-list .rank:hover{
-        width: 100px;
+      //滚动条样式
+      .scroll-list::-webkit-scrollbar-track {
+        background-color: #f1f1f1 !important; /* 设置滚动条轨道的背景颜色 */
       }
-      .scroll-list a{
-          color: #000;
-          text-decoration: none;
+
+      .scroll-list::-webkit-scrollbar-thumb {
+        background-color: #888 !important; /* 设置滚动条手柄的颜色 */
+        border-radius: 4px; /* 圆角 */
       }
-                .scroll-list a:hover {
-                  font-size: 16px;
-                  font-weight: 700;
-                  width: 100px;
-                  max-width: none;
-                    /* 悬停时取消最大宽度限制 */
-                    overflow: visible;
-                    /* 显示全部内容 */
-                    white-space: nowrap;
-                    /* 允许换行 */
-                    color: #ff4d4f;
-                    background-color: #dcdcdc;
-                }
-        
-                .scroll-list a:hover::before {
-                  width: 100%;
-                }
-        
-                .scroll-list a::before {
-                  display: block;
-                  content: '';
-                  position: absolute;
-                  bottom: -1px;
-                  height: 4px;
-                  width: 0px;
-                  background-color: rgba(0, 0, 0, 0.15);
-                  transition: all 0.5s ease-out;
-                }
-        
-                .scroll-list .heat {
-                  margin-left: 2px;
-                  color: rgba(0, 0, 0, 0.45);
-                  cursor: pointer;
-                  display: inline-block;
-                  width: 56px;
-                  height: 100%;
-                  line-height: 30px;
-                  font-size: 11px;
-                  flex: 0 0 auto;
-                }
-        
-                .scroll-list :nth-child(1)>li>.rank {
-                  color: white;
-                  background-color: red;
-                }
-        
-                .scroll-list :nth-child(2) .rank {
-                  color: white;
-                  background-color: rgb(237, 112, 45);
-                }
-        
-                .scroll-list :nth-child(3) .rank {
-                  color: white;
-                  background-color: rgb(238, 173, 63);
-                }
-        
-                .scroll-list>div {
-                  width: 100%;
-                }
-        
-                .scroll-list li {
-                  position: relative;
-                  width: 100%;
-                  height: 34px;
-                  line-height: 30px;
-                  padding: 2px 0;
-                  border-top: 2px solid rgba(5, 5, 5, .06);
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  gap: 8px;
-                }
-        
-                .scroll-list :first-child>li {
-                  border-top: 0;
-                }
-                .data-text {
-                  display: block;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-                  /* 添加其他样式以适应你的需求 */
-                }
-                
+
+      .scroll-list::-webkit-scrollbar-thumb:hover {
+        background-color: #555 !important; /* 悬停时的颜色 */
+      }
+      // .scroll-list .rank:hover{
+      //   width: 100px;
+      // }
+      .scroll-list a {
+        position: relative;
+        /* 添加此行 */
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #000;
+        font-size: 13.5px !important;
+        text-decoration: none;
+      }
+      .load {
+        margin-top: 100px;
+      }
+
+      .scroll-list a:hover {
+        margin-left: 5px;
+        transition: all 0.5s;
+      }
+
+      .scroll-list a:hover::before {
+        width: 100%;
+      }
+
+      .scroll-list a::before {
+        display: block;
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        height: 4px;
+        width: 0px;
+        background-color: rgba(0, 0, 0, 0.15);
+        transition: all 0.5s ease-out;
+      }
+
+      .scroll-list .heat {
+        margin-left: 2px;
+        color: rgba(0, 0, 0, 0.45);
+        cursor: pointer;
+        display: inline-block;
+        width: 46px;
+        height: 100%;
+        line-height: 30px;
+        font-size: 11px;
+        flex: 0 0 auto;
+      }
+
+      .scroll-list :nth-child(1) > li > .rank {
+        color: white;
+        background-color: red;
+      }
+
+      .scroll-list :nth-child(2) .rank {
+        color: white;
+        background-color: rgb(237, 112, 45);
+      }
+
+      .scroll-list :nth-child(3) .rank {
+        color: white;
+        background-color: rgb(238, 173, 63);
+      }
+
+      .scroll-list > div {
+        width: 100%;
+      }
+
+      .scroll-list li {
+        position: relative;
+        width: 100%;
+        height: 34px;
+        line-height: 30px;
+        padding: 8px 10px;
+        border-top: 2px solid rgba(5, 5, 5, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .scroll-list :first-child > li {
+        border-top: 0;
+      }
+      .data-text {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        /* 添加其他样式以适应你的需求 */
+      }
+
       .text {
         line-height: 32px;
         height: 28px;
         padding: 8px 10px;
         border-bottom: 1px solid #dcdcdc;
       }
-            .rank {
-              cursor: pointer;
-              padding: 4px 8px;
-              text-align: center;
-              color: rgba(0, 0, 0, 0.8);
-              border-radius: 5px;
-              line-height: 16px;
-              /* position: absolute; */
-              /* top: 7px; */
-              background-color: rgba(0, 0, 0, 0.04);
-              flex: 0 0 auto;
-            }
+      .rank {
+        cursor: pointer;
+        padding: 4px 8px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
+        line-height: 16px;
+        /* position: absolute; */
+        /* top: 7px; */
+        background-color: rgba(0, 0, 0, 0.04);
+        flex: 0 0 auto;
+      }
     }
 
     // 卡片底部
     .el-card__footer {
       text-align: center;
-      height: 40px;
+      height: 46px;
       padding: 0px;
       .refresh {
-          display: flex;
-          height: 44px;
-          line-height: 44px;
-          text-align: center;
-          font-size: 12px;
-          color: rgba(0, 0, 0, 0.45);
-          justify-content: space-between;
-      
-          span {
-            display: block;
+        display: flex;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.45);
+        justify-content: space-between;
+
+        span {
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: relative;
+          padding-top: 5px;
+          padding-left: 75px
+
+        }
+
+        li {
+          width: 50%;
+          padding-right: 60px;
+          
+        }
+
+        span {
+          position: relative;
+        }
+
+        .button {
+          // position: absolute;
+          // top: 50%;
+          // left: 50%;
+          // transform: translate(-50%, -50%);
+          background-color: #4dc7ff;
+          border-radius: 15px;
+          border: 0;
+          width: 35px;
+          height: 25px;
+          color: white;
+          cursor: pointer;
+          padding: 3px;
+
+          /* 添加其他样式以适应你的需求 */
+          img {
             width: 100%;
             height: 100%;
-            position: relative;
-            margin-top: 5px;
-          }
-      
-          li {
-            width: 50%;
-          }
-      
-          span {
-            position: relative;
-          }
-      
-          .button {
-            // position: absolute;
-            // top: 50%;
-            // left: 50%;
-            // transform: translate(-50%, -50%);
-            background-color: #ff4d4f;
-            border-radius: 24px;
-            border: 0;
-            width: 35px;
-            height: 25px;
-            color: white;
-            cursor: pointer;
-            padding: 3px;
-      
-            /* 添加其他样式以适应你的需求 */
-            img {
-              width: 100%;
-              height: 100%;
-            }
           }
         }
+      }
     }
   }
 }
 /* 媒体查询 */
-@media screen and (max-width:1420px) {
-
+@media screen and (max-width: 1420px) {
   .el-card {
     width: 29vw !important;
   }
 }
 
-@media screen and (max-width:1050px) {
-
+@media screen and (max-width: 1050px) {
   .el-card {
     width: 43vw;
   }
 }
 
-@media screen and (max-width:700px) {
-
+@media screen and (max-width: 700px) {
   .el-card {
     width: 90vw;
   }
 }
-@media screen and (max-width:375px) {
-
+@media screen and (max-width: 375px) {
   .el-card {
     width: 100% !important;
     height: 100% !important;
   }
   .scroll-list a:hover {
-    font-size: inherit !important;      /* 恢复到默认字体大小 */
-    font-weight: inherit !important;    /* 恢复到默认字体粗细 */
-    width: inherit !important;          /* 恢复到默认宽度 */
-    max-width: inherit !important;      /* 恢复到默认最大宽度 */
-    overflow: inherit !important;       /* 恢复到默认溢出行为 */
-    white-space: inherit !important;    /* 恢复到默认空白处理 */
-    color: inherit !important;          /* 恢复到默认颜色 */
+    font-size: inherit !important; /* 恢复到默认字体大小 */
+    font-weight: inherit !important; /* 恢复到默认字体粗细 */
+    width: inherit !important; /* 恢复到默认宽度 */
+    max-width: inherit !important; /* 恢复到默认最大宽度 */
+    overflow: inherit !important; /* 恢复到默认溢出行为 */
+    white-space: inherit !important; /* 恢复到默认空白处理 */
+    color: inherit !important; /* 恢复到默认颜色 */
     background-color: inherit !important; /* 恢复到默认背景颜色 */
     /* 你可以设置为其他你想要的样式，也可以直接取消hover效果 */
-    }
+  }
 }
- a {
-   position: relative;
-   width: 70%;
-   overflow: hidden;
-   display: inline-block;
-   text-overflow: ellipsis;
-   font-size: 15px;
-   /* margin-left: 30px; */
-   text-align: left;
-   flex: 1 1 auto;
- }
+a {
+  position: relative;
+  width: 70%;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  /* margin-left: 30px; */
+  text-align: left;
+  flex: 1 1 auto;
+}

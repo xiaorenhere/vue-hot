@@ -38,10 +38,16 @@ const fetchData = async () => {
     console.error('Error:', error);
   }
 };
-
+const loading = ref(true);
 const fetchData1 = async () => {
+  loading.value = true;
   data1.value = await fetchData();
   timers.value[0] = new Date();
+  
+  setTimeout(() => {
+    // 异步操作完成后关闭 loading
+    loading.value = false;
+  }, 1500);
   timerstr.value[0] = '0分钟';
 };
 
@@ -72,12 +78,20 @@ onMounted(() => {
 
       <!-- 主体部分 -->
       <div class="scroll-list">
-        <div v-for="(item, i) in data1" :key="item.id" :id="item.id" class="data">
-          <li><span class="rank">{{ i + 1 }}</span><a :href="item.url" target="_blank" class="data-text"
-              :title="item.title">{{
-                item.title }}</a><span class="heat" v-if="item.hot">{{ redu(item.hot) }}万</span><span class="heat"
-              v-else></span></li>
+        <div class="load" v-loading="loading" v-if="loading"></div>
+        <div v-else>
+          <div v-for="(item, i) in data1" :key="item.id" :id="item.id" class="data">
+            <li><span class="rank">{{ i + 1 }}</span>
+              <el-tooltip popper-class="my_tooltip" effect="light" :content=item.title placement="top" show-after=500
+                v-if="item.title.length > 12">
+                <a :href="item.url" target="_blank" class="data-text">{{ item.title }}</a>
+              </el-tooltip>
+              <a :href="item.url" target="_blank" class="data-text" v-else>{{ item.title }}</a>
+              <span class="heat" v-if="item.hot">{{ redu(item.hot) }}万</span><span class="heat" v-else></span>
+            </li>
+          </div>
         </div>
+
       </div>
 
 

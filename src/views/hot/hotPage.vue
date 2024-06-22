@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from 'vue';
 import HotCardrBaiDu from './components/hotCardr-baidu.vue';
 import HotCardWeiBo from './components/hotCardr-weibo.vue';
 import HotCardBiLiBiLi from './components/hotCardr-bilibili.vue';
@@ -21,42 +22,74 @@ import HotCardJieFang from './components/hotCardr-jiefang.vue';
 import HotCardJunBao from './components/hotCardr-junbao.vue';
 import HotCardJingJi from './components/hotCardr-jingji.vue';
 import HotCardXinHua from './components/hotCardr-xinhua.vue';
+
+const componentsList = [
+  HotCardrBaiDu,
+  HotCardWeiBo,
+  HotCardBiLiBiLi,
+  HotCardBiLiBiLiRank,
+  HotCardDouYin,
+  HotCardLoL,
+  HotCardZhiHu,
+  HotCardTengXun,
+  HotCardWangYi,
+  HotCardJueJin,
+  HotCardTouTiao,
+  HotCardHyper,
+  HotCardRenMin,
+  HotCardTapIos,
+  HotCardTapAz,
+  HotCardQingNian,
+  HotCardGongRen,
+  HotCardGuangMing,
+  HotCardJieFang,
+  HotCardJunBao,
+  HotCardJingJi,
+  HotCardXinHua,
+];
+
+const visibleComponents = ref(componentsList.slice(0, 8));
+const loading = ref(false);
+
+const loadMore = () => {
+  if (loading.value) return;
+  loading.value = true;
+
+  setTimeout(() => {
+    const nextBatch = componentsList.slice(visibleComponents.value.length, visibleComponents.value.length + 8);
+    visibleComponents.value.push(...nextBatch);
+    loading.value = false;
+  }, 500); 
+};
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      loadMore();
+    }
+  });
+
+  const sentinel = document.querySelector('.sentinel');
+  if (sentinel) {
+    observer.observe(sentinel);
+  }
+});
 </script>
+
 <template>
   <nav>
     <div class="big">
-
-      <HotCardrBaiDu />
-      <HotCardWeiBo />
-      <HotCardBiLiBiLi />
-      <HotCardBiLiBiLiRank />
-      <HotCardDouYin />
-      <HotCardLoL />
-      <HotCardZhiHu />
-      <HotCardTengXun />
-      <HotCardWangYi />
-      <HotCardJueJin />
-      <HotCardTouTiao />
-      <HotCardHyper />
-      <HotCardRenMin />
-      <HotCardTapIos />
-      <HotCardTapAz />
-      <HotCardQingNian />
-      <HotCardGongRen />
-      <HotCardJunBao />
-      <HotCardGuangMing />
-      <HotCardJieFang />
-      <HotCardJingJi />
-      <HotCardXinHua />
+      <component :is="comp" v-for="(comp, index) in visibleComponents" :key="index" />
+      <div class="sentinel" v-if="visibleComponents.length < componentsList.length"></div>
     </div>
   </nav>
   <div class="footer">
     <div class="beian">
       <a href="https://beian.miit.gov.cn/" target="_blank">
         <img src="https://beian.mps.gov.cn/img/logo01.dd7ff50e.png" alt="">
-        <span>备案号：豫ICP备2024044391号</span>
+        <span>备案号：豫ICP备2024068276号</span>
       </a>
-      <a href="https://www.kelcena.com/" target="_blank">友情链接：香香编程知识平台</a>
+      <!-- <a href="https://www.kelcena.com/" target="_blank">友情链接：香香编程知识平台</a> -->
     </div>
   </div>
 </template>

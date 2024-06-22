@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // 定义响应式数据
 const data1 = ref('');
+const loading = ref(true);
 
 const timerstr = ref([]);
 const timers = ref([]);
@@ -40,11 +41,17 @@ const fetchData = async () => {
 };
 
 const fetchData1 = async () => {
+  loading.value = true;
   data1.value = await fetchData();
   timers.value[0] = new Date();
+  
+  setTimeout(() => {
+    // 异步操作完成后关闭 loading
+    loading.value = false;
+  }, 1500);
   timerstr.value[0] = '0分钟';
-};
 
+};
 
 
 // 生命周期钩子
@@ -72,32 +79,47 @@ onMounted(() => {
 
       <!-- 主体部分 -->
       <div class="scroll-list">
-        <div v-for="(item, i) in data1" :key="item.id" :id="item.id" class="data">
-          <li><span class="rank">{{ i + 1 }}</span>
-            <a :href="item.url" target="_blank" class="data-text"
-              :title="item.title">{{
-                item.title }}</a><span class="heat" v-if="item.hot">{{ redu(item.hot) }}万</span><span class="heat"
-              v-else></span></li>
+        <div class="load" v-loading="loading" v-if="loading"></div>
+        <div v-else>
+          <div v-for="(item, i) in data1" :key="item.id" :id="item.id" class="data">
+            <li><span class="rank">{{ i + 1 }}</span>
+              <el-tooltip popper-class="my_tooltip" effect="light" :content=item.title placement="top" show-after=500
+                v-if="item.title.length > 12">
+                <a :href="item.url" target="_blank" class="data-text">{{ item.title }}</a>
+              </el-tooltip>
+              <a :href="item.url" target="_blank" class="data-text" v-else>{{ item.title }}</a>
+              <span class="heat" v-if="item.hot">{{ redu(item.hot) }}万</span><span class="heat" v-else></span>
+            </li>
+          </div>
         </div>
       </div>
 
-
       <!-- 底部 -->
       <template #footer>
-        <ul class="refresh">
-          <li>{{ timerstr[0] }}前更新</li>
-          <li><span> <button @click="fetchData1()" class="button"><img src="../../../assets/images/shuaxin.svg"
-                  alt=""></button></span>
-          </li>
-        </ul>
+        <div class="footer">
+          <ul class="refresh">
+            <li>{{ timerstr[0] }}前更新</li>
+            <li><span> <button @click="fetchData1()" class="button"><img src="../../../assets/images/shuaxin.svg"
+                    alt=""></button></span>
+            </li>
+          </ul>
+        </div>
+
       </template>
     </el-card>
   </div>
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
  @import "../../../assets/css/hotCard.scss";
 // 卡片
+.scroll-list .my_tooltip {
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+.el-tooltip.is-show {
+  /* 在这里添加显示状态下的边框样式 */
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
 
 </style>
