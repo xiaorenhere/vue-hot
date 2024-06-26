@@ -84,7 +84,7 @@ onMounted(() => {
           <div v-for="(item, i) in data1" :key="item.id" :id="item.id" class="data">
             <li><span class="rank">{{ i + 1 }}</span>
               <el-tooltip popper-class="my_tooltip" effect="light" :content=item.title placement="top" show-after=500
-                v-if="item.title.length > 12">
+               v-if="item.title.length > 12">
                 <a :href="item.url" target="_blank" class="data-text">{{ item.title }}</a>
               </el-tooltip>
               <a :href="item.url" target="_blank" class="data-text" v-else>{{ item.title }}</a>

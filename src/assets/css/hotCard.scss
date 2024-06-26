@@ -235,6 +235,8 @@ li {
 
     // 卡片底部
     .el-card__footer {
+      display: flex;
+      justify-content: space-between;
       text-align: center;
       height: 46px;
       padding: 0px;
@@ -268,10 +270,10 @@ li {
         }
 
         .button {
-          // position: absolute;
-          // top: 50%;
-          // left: 50%;
-          // transform: translate(-50%, -50%);
+          position: absolute;
+          top: 50%;
+          left: 100%;
+          transform: translate(0%, -50%);
           background-color: #4dc7ff;
           border-radius: 15px;
           border: 0;
@@ -296,6 +298,18 @@ li {
   .el-card {
     width: 29vw !important;
   }
+  .el-card__footer{
+    padding-right: 0px !important;
+
+  }
+  .refresh{
+      padding-right: 0px !important;
+
+    .button{
+      position: absolute;
+      right: 10px !important;
+    }
+  }
 }
 
 @media screen and (max-width: 1050px) {
@@ -303,28 +317,31 @@ li {
     width: 43vw;
   }
 }
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 874px) {
   .el-card {
-    width: 90vw;
+    width: 44vw !important;
   }
 }
-@media screen and (max-width: 375px) {
+
+@media screen and (max-width: 764px) {
+  .el-card {
+    width: 43vw !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .el-card {
+    width: 100% !important;
+    // position: absolute;
+    padding-top: 0px;
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 382px) {
   .el-card {
     width: 100% !important;
     height: 100% !important;
   }
-  .scroll-list a:hover {
-    font-size: inherit !important; /* 恢复到默认字体大小 */
-    font-weight: inherit !important; /* 恢复到默认字体粗细 */
-    width: inherit !important; /* 恢复到默认宽度 */
-    max-width: inherit !important; /* 恢复到默认最大宽度 */
-    overflow: inherit !important; /* 恢复到默认溢出行为 */
-    white-space: inherit !important; /* 恢复到默认空白处理 */
-    color: inherit !important; /* 恢复到默认颜色 */
-    background-color: inherit !important; /* 恢复到默认背景颜色 */
-    /* 你可以设置为其他你想要的样式，也可以直接取消hover效果 */
-  }
+  
 }
 a {
   position: relative;

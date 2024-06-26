@@ -56,7 +56,7 @@ const loadMore = () => {
   loading.value = true;
 
   setTimeout(() => {
-    const nextBatch = componentsList.slice(visibleComponents.value.length, visibleComponents.value.length + 8);
+    const nextBatch = componentsList.slice(visibleComponents.value.length, visibleComponents.value.length + 4);
     visibleComponents.value.push(...nextBatch);
     loading.value = false;
   }, 500); 
@@ -77,7 +77,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav>
+  <nav class="nav">
     <div class="big">
       <component :is="comp" v-for="(comp, index) in visibleComponents" :key="index" />
       <div class="sentinel" v-if="visibleComponents.length < componentsList.length"></div>

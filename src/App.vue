@@ -93,16 +93,18 @@ document.addEventListener('scroll', function () {
   }
 });
 
-let isLight = true
+let isLight = ref(true)
 
 const changeBgColor = () => {
-  isLight = !isLight
-  // if (isLight.value) {
-  //   const header = document.querySelector('.hot-top')
-  //   header.classList.add('write')
-  // }
-  // const header = document.querySelector('.hot-top')
-  // header.classList.add('black')
+  const header = document.querySelector('.total')
+
+  if (isLight.value) {
+    header.classList.add('dark-theme')
+  } else {
+    header.classList.remove('dark-theme')
+  }
+  isLight.value = !isLight.value
+
 }
 
 const loading = ref(true)
@@ -112,7 +114,7 @@ setTimeout(() => {
 }, 1000);
 </script>
 <template>
-  <div v-loading="loading">
+  <div v-loading="loading" class="total">
     <div class="hot-top">
       <header>
         <div class="logo1">
@@ -133,7 +135,7 @@ setTimeout(() => {
           <div class="hot-right-one">
             <button @click="changeBgColor">
               <img v-if="isLight" src="./assets/images/太阳.svg" alt="">
-              <img v-else src="./assets/images/moon-月亮.svg" alt="">
+              <img v-else src="./assets/images/moon-b-月亮.svg" alt="">
             </button>
           </div>
           <div class="hot-right-two">
@@ -157,7 +159,8 @@ setTimeout(() => {
   </div>
 
 </template>
-<style scoped lang="scss">
+<style  lang="scss">
 @import url('./assets/css/app.scss');
+@import url('./assets/css/dark.scss');
 
 </style>

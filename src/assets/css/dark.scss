@@ -1,0 +1,119 @@
+.dark-theme{
+  background-color: #11181c;
+  .hot-top{
+    background-color: #11181c;
+    .logo1{
+      .title1{
+        p{
+          color: #fff;
+        }
+      }
+      .hot-right{
+        .hot-right-three{
+          background-color: #fff !important;
+          .progress-percentage{
+            color: #fff !important;
+          }
+        }
+      }
+    }
+    .times{
+      .time1{
+        color: #fff;
+      }
+      .time2{
+        color: #fff;
+      }
+    }
+    .hot-right{
+      .hot-right-three{
+        .progress-container{
+          // .progress-ring{
+          //   background-color: #333;
+          // }
+          .progress-percentage{
+            color: #fff !important;
+          }
+        }
+      }
+    }
+  }
+  .nav{
+    background-color: #11181c !important;
+    .big{
+      background-color: #11181c !important;
+      .card{
+        background-color: #11181c !important;
+        
+        .el-card{
+          background-color: #11181c !important;
+          border: 1px solid gray;
+          .el-card__header{
+            // img{
+            //   background-color: #fff !important;
+            // }
+            border-bottom:1px solid gray;
+            .title{
+              color: #fff !important;
+            }
+          }
+          .el-card__body{
+            
+            .scroll-list :nth-child(1) > li > .rank {
+              color: white;
+              background-color: red;
+            }
+
+            .scroll-list :nth-child(2) .rank {
+              color: white;
+              background-color: rgb(237, 112, 45);
+            }
+
+            .scroll-list :nth-child(3) .rank {
+              color: white;
+              background-color: rgb(238, 173, 63);
+            }
+            .scroll-list .rank {
+              color: white;
+              background-color: #333;
+            }
+            .scroll-list li a{
+              color: white;
+            }
+            .heat{
+              color: white;
+            }
+          }
+          .el-card__body::-webkit-scrollbar-track {
+          background-color: #11181c !important; /* 这里替换成你想要的颜色 */
+          }
+          .el-card__body::-webkit-scrollbar-thumb {
+            background-color: #888 !important; /* 滚动条thumb（拖动条）的背景颜色 */
+            border-radius: 4px; /* 圆角 */
+          }
+          .el-card__body::-webkit-scrollbar {
+            width: 8px; /* 滚动条宽度 */
+          }
+          .el-card__footer{
+            border-top:1px solid gray;
+            .refresh{
+              color: white;
+              .button{
+                background-color: #333;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer{
+    background-color: #11181c !important;
+    border-top: 1px solid gray;
+    .beian{
+      a{
+      color: white;
+      }
+    }
+  }
+}
