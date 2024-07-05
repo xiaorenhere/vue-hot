@@ -31,7 +31,7 @@ const setTimer = () => {
 // 数据获取方法
 const fetchData = async () => {
   try {
-    const url = 'http://www.codefun.top:8087/qingnian';
+    const url = 'https://hot-api.codefun.top/qingnian';
     const response = await axios.get(url);
     return response.data.data;
   } catch (error) {

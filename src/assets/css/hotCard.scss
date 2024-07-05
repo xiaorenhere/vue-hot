@@ -336,9 +336,9 @@ li {
     padding-left: 0px;
   }
 }
-@media screen and (max-width: 382px) {
+@media screen and (max-width: 400px) {
   .el-card {
-    width: 100% !important;
+    width: 100vw !important;
     height: 100% !important;
   }
   

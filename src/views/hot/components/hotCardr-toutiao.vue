@@ -31,7 +31,7 @@ const setTimer = () => {
 // 数据获取方法
 const fetchData = async () => {
   try {
-    const url = 'http://www.codefun.top:8087/toutiao';
+    const url = 'https://hot-api.codefun.top/toutiao';
     const response = await axios.get(url);
     return response.data.data;
   } catch (error) {

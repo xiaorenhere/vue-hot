@@ -28,10 +28,10 @@ const setTimer = () => {
   }, 60000);
 };
 
-// 数据获取方法
+// 数据获取方法s
 const fetchData = async () => {
   try {
-    const url = 'http://www.codefun.top:8087/zhihu';
+    const url = 'https://hot-api.codefun.top/zhihu';
     const response = await axios.get(url);
     return response.data.data;
   } catch (error) {

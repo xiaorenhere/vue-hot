@@ -31,7 +31,7 @@ const setTimer = () => {
 // 数据获取方法
 const fetchData = async () => {
   try {
-    const url = 'http://www.codefun.top:8087/xinhua';
+    const url = 'https://hot-api.codefun.top/xinhua';
     const response = await axios.get(url);
     return response.data.data;
   } catch (error) {
@@ -43,7 +43,7 @@ const fetchData1 = async () => {
   loading.value = true;
   data1.value = await fetchData();
   timers.value[0] = new Date();
-  
+
   setTimeout(() => {
     // 异步操作完成后关闭 loading
     loading.value = false;
